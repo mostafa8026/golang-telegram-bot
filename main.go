@@ -39,7 +39,11 @@ func main() {
 		if _, err = bot.Send(m.Chat, msg); err != nil {
 			log.Println(err)
 		}
-		log.Println("Start request has been sent by: %v\n in chat: %v", m.Sender, m.Chat)
+		log.Printf("Start request has been sent by: %v\n in chat: %v", m.Sender, m.Chat)
+	})
+
+	bot.Handle(tb.OnText, func(m *tb.Message) {
+		bot.Send(m.Chat, m.Text)
 	})
 
 	log.Println("Bot started")
